@@ -21,6 +21,10 @@ Whether you’re an experienced developer, a PM or designer, Bolt.new allows you
 
 For developers interested in building their own AI-powered development tools with WebContainers, check out the open-source Bolt codebase in this repo!
 
+## Feature Specs
+
+- [Customizable Workspace Themes](./docs/features/customizable-workspace-themes.md): Let users build, install, and share editor/UI themes with a built-in marketplace for discovery and previews.
+
 ## Tips and Tricks
 
 Here are some tips to get the most out of Bolt.new:
