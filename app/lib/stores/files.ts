@@ -136,10 +136,15 @@ export class FilesStore {
           break;
         }
         case 'remove_dir': {
-          this.files.setKey(sanitizedPath, undefined);
+          const currentFiles = this.files.get();
+          const prefix = `${sanitizedPath}/`;
 
-          for (const [direntPath] of Object.entries(this.files)) {
-            if (direntPath.startsWith(sanitizedPath)) {
+          for (const [direntPath, dirent] of Object.entries(currentFiles)) {
+            if (direntPath === sanitizedPath || direntPath.startsWith(prefix)) {
+              if (dirent?.type === 'file') {
+                this.#size--;
+              }
+
               this.files.setKey(direntPath, undefined);
             }
           }
@@ -171,7 +176,12 @@ export class FilesStore {
           break;
         }
         case 'remove_file': {
-          this.#size--;
+          const entry = this.files.get()[sanitizedPath];
+
+          if (entry?.type === 'file') {
+            this.#size--;
+          }
+
           this.files.setKey(sanitizedPath, undefined);
           break;
         }
